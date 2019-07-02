@@ -10,11 +10,11 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import linear_model
 from sklearn import metrics
 
-class ngram_sgd:
+class ngrams_sgd:
     # This model uses ngrams (length 1 and 2) to represent tweets then a standard sgd-classifier is used
 
-    def_trainneg = "../data/input/train_neg_mini.txt"
-    def_trainpos = "../data/input/train_pos_mini.txt"
+    def_trainneg = "../data/input/train_neg.txt"
+    def_trainpos = "../data/input/train_pos.txt"
     def_test = "../data/input/test_data.txt"
     def_subm = "../data/submissions/"
     def_probs = "../data/probabilities/"
@@ -36,7 +36,7 @@ class ngram_sgd:
         # Method to preprocess tweets with various methods (stopwords, lemmatization, only letters, lower case)
         # Returns list of vectors that express occurence of ngrams
         # Fit-parameter controls whether count-vectorizer is constructed from scratch
-        preprocessed_tweets = [" ".join(u.normalizer(t)) for t in tweets]
+        preprocessed_tweets = [" ".join(u.preprocess_a(t)) for t in tweets]
         if fit:
             return self.cv.fit_transform(preprocessed_tweets)
         else:
@@ -95,13 +95,13 @@ class ngram_sgd:
         self.fit(train_x, y)
 
         print("Probs train set")
-        probs = self.clf.decision_function(train_x)
+        probs = self.clf.decision_function(train_x)[:,None]
         with open(self.probs + self.name + "_train.pkl","wb") as f:
             pickle.dump(probs,f)
 
         print("Probs test set")
         test_features = self.load_test()
-        probs = self.clf.decision_function(test_features)
+        probs = self.clf.decision_function(test_features)[:,None]
         with open(self.probs + self.name + "_test.pkl","wb") as f:
             pickle.dump(probs,f)
 
