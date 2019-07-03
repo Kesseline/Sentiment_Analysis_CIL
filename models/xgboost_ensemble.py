@@ -2,6 +2,7 @@ import sys
 
 sys.path.insert(0,"../utils")
 
+import model as m
 import utils as u
 import numpy as np
 import pickle
@@ -9,24 +10,19 @@ import xgboost as xgb
 
 from sklearn import metrics
 
-class xgboost_ensemble:
+class xgboost_ensemble(m.model):
     # Train XGBoost on probabilities obtained by various models
     # Decision trees are used to combine predictions of these models.
 
-    def_subm = "../data/submissions/"
-    def_probs = "../data/probabilities/"
     def_models = []
 
-    def __init__(self, subm = def_subm, probs = def_probs, models = def_models):
-        # Initialize paths for data and models to be combined
-        self.subm = subm
-        self.probs = probs
+    def __init__(self, models = def_models, subm = m.def_subm, probs = m.def_probs):
+        m.model.__init__(self, subm=subm, probs=probs)
+        
         if len(models) < 2:
             raise Exception("Please choose at least two models")
         self.models = models
-
-        self.name = self.__class__.__name__
-
+        
     def load_train(self):
         # Load probabilities for training data
         print("Loading training data")
@@ -44,7 +40,7 @@ class xgboost_ensemble:
 
         # We assume training data to be exactly half negative and half positive 
         # with negative tweets occupying the first half
-        labels = np.array(int(train_size/2) * [-1] + int(train_size/2) * [1])
+        labels = np.array(int(train_size/2) * [self.neg] + int(train_size/2) * [self.pos])
         return train_data, labels
 
     def load_test(self):
@@ -70,26 +66,10 @@ class xgboost_ensemble:
         train_x, val_x, train_y, val_y = u.split_data(data, labels, test_size = 0.30)
         self.xgb = xgb.XGBClassifier().fit(train_x, train_y, early_stopping_rounds=3, eval_metric="error", eval_set = [(val_x, val_y)])
 
-    def validate(self):
-        # Validate model
-        train_x, y = self.load_train()
-        train_x, test_x, train_y, test_y = u.split_data(train_x, y)
-
-        self.fit(train_x, train_y)
-
-        print("Validating")
-        preds = self.xgb.predict(test_x)
-        print(metrics.classification_report(test_y, preds))
+    def compute_predict(self, data):
+        # Predict model, return labels
+        return self.xgb.predict(data)
 
 
-    def predict(self):
-        # Train model and create a submission
-        train_x, y = self.load_train()
-        self.fit(train_x, y)
-
-        print("Creating submission")
-        test_features = self.load_test()
-        preds = self.xgb.predict(test_features)
-
-        u.write_submission(preds, self.subm + self.name + "_submission.csv")
-        print("Submission successfully created")
+    def generate_probs(self):
+        print("xgboost does not support computing confidence score.")        

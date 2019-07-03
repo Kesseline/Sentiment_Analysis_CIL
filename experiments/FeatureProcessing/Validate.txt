@@ -1,0 +1,67 @@
+Custom pattern:
+original:	0.84 0.84 0.83	153271
+no_Sanitize: 	0.82 0.81 0.81	127906
+none: 		0.82 0.81 0.81	127397
+noTypo:		0.81 0.80 0.80	102505
+onlyTypo:	0.80 0.80 0.80	118923
+onlySanitize:	0.79 0.78 0.78	 84288
+all: 		0.79 0.78 0.78	105341
+no_Special: 	0.76 0.75 0.75	 91804
+
+Default pattern:
+original:	0.83 0.82 0.82	140751
+no_Sanitize: 	0.80 0.80 0.80	122074
+none: 		0.82 0.82 0.82 	131282
+noTypo:		0.80 0.80 0.80	 98550
+onlyTypo:	0.81 0.80 0.80	123746
+onlySanitize:	0.80 0.80 0.80	 91946
+all: 		0.78 0.77 0.77	 99092
+no_Special: 	0.78 0.78 0.78 	 99420
+
+Custom features:
+original:	0.82 0.82 0.82	648824
+no_Sanitize: 	0.79 0.79 0.79	567101
+none: 		0.80 0.80 0.80	509329
+noTypo:		0.78 0.78 0.78	510284
+onlyTypo:	0.81 0.81 0.81	289480
+onlySanitize:	0.79 0.79 0.79	206098
+all: 		0.78 0.78 0.78	341830
+no_Special: 	0.76 0.76 0.76	272465
+
+cutoff = 3 ; procWords = 0 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.83 0.83 0.83 136215
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.83 0.83 0.83 243225
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.83 0.83 0.83 247316
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.83 0.83 0.82 232424
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.83 0.82 0.82 237366
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.82 0.82 0.82 561611
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.82 0.82 0.82 559600
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.82 0.81 0.81 222906
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.82 0.81 0.81 233157
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.81 0.81 0.81 268067
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.81 0.81 0.81 276463
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.81 0.81 0.81 494507
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.81 0.81 0.81 500363
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.81 0.80 0.80 186631
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.81 0.80 0.80 196230
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.81 0.80 0.80 201229
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.80 0.80 0.80 182613
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.80 0.80 0.80 190265
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.80 0.80 0.80 192278
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.80 0.80 0.80 201532
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.80 0.80 0.80 205902
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.80 0.80 0.80 215028
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 1 ; convertWords = 0 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.80 0.80 0.80 537422
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.80 0.79 0.79 198438
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.79 0.79 0.79 210236
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.79 0.78 0.78 178351
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 0 ; convertWords = 0 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.78 0.78 0.78 479430
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.78 0.76 0.76 175555
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.78 0.78 0.78 323892
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.78 0.77 0.77 180924
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.78 0.76 0.76 171428
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 0 ; 0.77 0.77 0.77 182314
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 1 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.77 0.75 0.74 164989
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 0 ; useCustomPattern = 0 ; 0.76 0.76 0.76 273601
+cutoff = 2 ; procWords = 1 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.76 0.74 0.74 144516
+cutoff = 2 ; procWords = 0 ; useCount = 0 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.76 0.74 0.74 146981
+cutoff = 2 ; procWords = 1 ; useCount = 1 ; keepSpecial = 0 ; convertWords = 1 ; useVectoriser = 1 ; useCustomPattern = 1 ; 0.74 0.72 0.71 145759
