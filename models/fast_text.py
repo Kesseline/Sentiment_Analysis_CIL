@@ -22,7 +22,7 @@ class fast_text(m.model):
         return tweets
     
     def preprocess_fasttext(self, tweets, labels):
-        tweets = [t.replaceAll("\n","") for t in tweets]
+        tweets = [t.replace("\n","") for t in tweets]
         # format has to be: "<class_label><class_name> tweet"
         return ["".join([self.class_label, str(t[1]), " ", t[0]]) for t in zip(tweets, labels)]
 
