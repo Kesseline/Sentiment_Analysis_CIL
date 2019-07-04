@@ -1,7 +1,8 @@
 import sys
 import argparse
 
-sys.path.insert(0,"../utils")
+sys.path.insert(0,"utils")
+sys.path.insert(0,"models")
 import model as m
 
 import ngrams_sgd
@@ -10,6 +11,8 @@ import simple_conv
 import glove_svm
 import xgboost_ensemble
 import fast_text
+import rcnn
+import dcnn
 
 def print_bold(text):
     print ('\033[1m' + text + '\033[0m')
@@ -35,6 +38,8 @@ if __name__ == '__main__':
         simple_lstm.simple_lstm(),
         simple_conv.simple_conv(),
 		fast_text.fast_text(),
+        rcnn.rcnn(),
+        dcnn.dcnn(),
         #glove_svm.glove_svm()
     ]
     

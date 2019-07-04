@@ -28,7 +28,7 @@ class fast_text(m.model):
 
     def fit(self, data, labels):
         print("Preprocessing input data to be accepted from the fastText model")
-        processed_data = preprocess_fasttext(self, data, labels)
+        processed_data = self.preprocess_fasttext(data, labels)
         
         tmp_train_file = "data.train.txt"        
         print("Creating temporary file " + tmp_train_file)
@@ -46,15 +46,17 @@ class fast_text(m.model):
 
     def compute_predict(self, data):
         # tweet must have specific form
-        data = ["".join(t.split("\n")).decode('utf-8').strip() for t in data]
+        #data = ["".join(t.split("\n")).decode('utf-8').strip() for t in data]
+        data = ["".join(t.split("\n")).strip() for t in data]
         # this is ugly, i know
-        res = [self.clf.predict()[0][0][len(self.class_label):] for t in data]
+        res = [self.clf.predict(t)[0][0][len(self.class_label):] for t in data]
         # predictions are now in array form
         return [int(i) for i in res]
 
     def compute_props(self, data):
-        data = ["".join(t.split("\n")).decode('utf-8').strip() for t in data]
-        res = [self.clf.predict()[1] for t in data]
+        #data = ["".join(t.split("\n")).decode('utf-8').strip() for t in data]
+        data = ["".join(t.split("\n")).strip() for t in data]
+        res = [self.clf.predict(t)[1] for t in data]
         # probabilities are now in array form
         return [float(i) for i in res]
 

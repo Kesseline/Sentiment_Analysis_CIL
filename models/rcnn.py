@@ -1,13 +1,19 @@
 import sys
 
 sys.path.insert(0,"../utils")
+sys.path.insert(0,"src")
 
+import model as m
 import utils as u
 import numpy as np
 import pickle
 import time
 import datetime
 import os
+
+import pickle_vocab as pv
+import cooc as coo
+import glove_embeddings as ge
 
 from sklearn import metrics
 import tensorflow as tf
@@ -19,35 +25,23 @@ import TextRCNN as trcnn
 #
 ###############################
 
-class rcnn:
+class rcnn(m.model):
     # This model uses the recurrent convolutional structure
 
-    def_trainneg = "../data/input/train_neg_mini.txt"
-    def_trainpos = "../data/input/train_pos_mini.txt"
-    def_test = "../data/input/test_data.txt"
-    def_subm = "../data/submissions/"
-    def_probs = "../data/probabilities/"
-
     # Use Glove embeddings by default
-    def_glove = "../data/embeddings/glove.npz"
-    def_glove_voc = "../data/embeddings/glove_vocab.pkl"
+    def_vocab = "../data/embeddings/rcnn/vocab.pkl"
+    def_cooc = "../data/embeddings/rcnn/cooc.pkl"
+    def_embeddings = "../data/embeddings/rcnn/embeddings.npz"
 
-    def __init__(self, trainneg = def_trainneg, trainpos = def_trainpos, test = def_test, subm = def_subm, probs = def_probs,
-            word2vec = None, glove = def_glove, glove_voc = def_glove_voc, cp_dir = None):
-        # Initialize paths for data and parameters
-        self.trainneg = trainneg
-        self.trainpos = trainpos
-        self.test = test
-        self.subm = subm
-        self.probs = probs
-
-        self.name = self.__class__.__name__
-
+    def __init__(self, vocab = def_vocab, cooc = def_cooc, embeddings = def_embeddings, subm = m.def_subm, probs = m.def_probs, trainneg = m.def_trainneg, trainpos = m.def_trainpos, test = m.def_test, word2vec = None, cp_dir = None):
+        m.model.__init__(self, subm, probs, trainneg, trainpos, test)
+        
         # Model Hyperparameters
         self.max_sentence_length = 50       # Max sentence length in train/test data (Default: 50)
         self.cell_type = "vanilla"          # Type of RNN cell. Choose 'vanilla' or 'lstm' or 'gru' (Default: vanilla)
-        self.glove = glove                  # Glove file with pre-trained embeddings
-        self.glove_voc = glove_voc          # Lookup-file for glove-embeddings
+        self.glove = embeddings             # Glove file with pre-trained embeddings
+        self.glove_voc = vocab              # Lookup-file for glove-embeddings
+        self.cooc = cooc                    # Cooc matrix file
         self.word2vec = word2vec            # Word2vec file with pre-trained embeddings
         self.word_embedding_dim = 300       # Dimensionality of word embedding (Default: 300)
         self.context_embedding_dim = 512    # Dimensionality of context embedding(= RNN state size)  (Default: 512)
@@ -69,6 +63,12 @@ class rcnn:
 
         self.text_vocab_processor = tf.contrib.learn.preprocessing.VocabularyProcessor(self.max_sentence_length)
 
+    def build(self):
+        # Initialize vocabulary 
+        pv.generate_vocab(self.trainpos, self.trainneg, self.glove_voc)
+        coo.create_cooc(self.trainpos, self.trainneg, self.glove_voc, self.cooc)
+        ge.create_embeddings(self.cooc, self.glove)
+        
     def load_train(self):
         # Load and prepare training tweets
         print("Loading training data")

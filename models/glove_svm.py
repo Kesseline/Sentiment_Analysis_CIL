@@ -20,9 +20,9 @@ from sklearn import svm
 class glove_svm(m.model):
     # This model uses ngrams (length 1 and 2) to represent tweets then a standard sgd-classifier is used
 
-    def_vocab = "../data/embeddings/glove/vocab.pkl"
-    def_cooc = "../data/embeddings/glove/cooc.pkl"
-    def_embeddings = "../data/embeddings/glove/embeddings.npz"
+    def_vocab = "../data/embeddings/glove_svm/vocab.pkl"
+    def_cooc = "../data/embeddings/glove_svm/cooc.pkl"
+    def_embeddings = "../data/embeddings/glove_svm/embeddings.npz"
     
     def __init__(self, vocab = def_vocab, cooc = def_cooc, embeddings = def_embeddings, subm = m.def_subm, probs = m.def_probs, trainneg = m.def_trainneg, trainpos = m.def_trainpos, test = m.def_test):
         m.model.__init__(self, subm, probs, trainneg, trainpos, test)
