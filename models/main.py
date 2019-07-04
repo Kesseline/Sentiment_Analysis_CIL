@@ -9,6 +9,7 @@ import simple_lstm
 import simple_conv
 import glove_svm
 import xgboost_ensemble
+import fast_text
 
 def print_bold(text):
     print ('\033[1m' + text + '\033[0m')
@@ -33,6 +34,7 @@ if __name__ == '__main__':
         ngrams_sgd.ngrams_sgd(),
         simple_lstm.simple_lstm(),
         simple_conv.simple_conv(),
+		fast_text.fast_text(),
         #glove_svm.glove_svm()
     ]
     
