@@ -13,6 +13,12 @@ from sklearn import metrics
 import tensorflow as tf
 import TextRCNN as trcnn
 
+###############################
+#
+# Reference: This code is partially based on the model from https://github.com/roomylee/rcnn-text-classification
+#
+###############################
+
 class rcnn:
     # This model uses the recurrent convolutional structure
 

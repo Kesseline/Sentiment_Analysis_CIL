@@ -1,5 +1,10 @@
 import tensorflow as tf
 
+###############################
+#
+# Reference: The original code for this class can be found on https://github.com/roomylee/rcnn-text-classification
+#
+###############################
 
 class TextRCNN:
     """
