@@ -1,6 +1,8 @@
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
 
 import re
 import numpy as np
@@ -8,6 +10,8 @@ import pandas as pd
 from itertools import groupby
 from sklearn.model_selection import train_test_split
 from segmenter import Analyzer
+
+from nltk.stem.porter import PorterStemmer
 
 # Init stop words
 stop_words = set(stopwords.words('english'))
@@ -125,6 +129,17 @@ def preprocess_b(tweet):
     tweet = remove_number(tweet)
     tweet = spelling_correction(tweet)
     return tweet.strip().lower()
+
+def preprocess_c(tweet):
+    # In: text, out: preprocessed text (stemmed, no user, tokenized)
+    stemmer = PorterStemmer()
+    tweet = re.sub(re.compile(r'<user>'), '', tweet)
+    sents = sent_tokenize(tweet)
+
+    words = [word_tokenize(s) for s in sents]
+    words = [e for sent in words for e in sent]
+    return [stemmer.stem(e.lower()) for e in words]
+
 
 def remConsecDupl(list):
     # In: list Out: list where consecutive similar occurences are replaced by single one
