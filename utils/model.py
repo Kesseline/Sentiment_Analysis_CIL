@@ -104,8 +104,9 @@ class model:
         
     def generate_probs(self):
         # Train model and compute confidence score on train-(negative tweets first) and test-data
+        train_x, y = self.load_train()
+
         if not self.hasTrained:
-            train_x, y = self.load_train()
             self.fit(train_x, y)
             self.hasTrained = True
 
