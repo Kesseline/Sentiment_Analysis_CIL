@@ -1,6 +1,8 @@
 import sys
+import os
 
-sys.path.insert(0,"../utils")
+dirname = os.path.dirname(__file__)
+sys.path.insert(0,os.path.join(dirname, "../utils"))
 
 import model as m
 import numpy as np

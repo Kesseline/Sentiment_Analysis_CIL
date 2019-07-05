@@ -2,17 +2,19 @@
 
 
 import os
+import code
 
 class Analyzer(object):
     def __init__(self,file_dir="../data/dictionaries/en" , case_folding=True, minimum_frequency=1.0e-08):
         self.frequencies = dict()
         self.total = 0.0
         self.minimum_frequency = minimum_frequency
+        self.dirname = os.path.dirname(__file__)
         self.file_dir =file_dir
-        self.total = float(open(file_dir + "/total.tsv").readlines()[0])
+        self.total = float(open(os.path.join(self.dirname, self.file_dir, "total.tsv")).readlines()[0])
         self.case_folding = case_folding
         counts = dict()
-        for line in open(file_dir + "/frequencies.tsv"):
+        for line in open(os.path.join(self.dirname, self.file_dir , "frequencies.tsv")):
             parts = line.strip().split("\t")
             if len(parts) == 2:
                 word, count = parts

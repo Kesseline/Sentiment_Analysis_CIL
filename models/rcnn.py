@@ -1,7 +1,9 @@
 import sys
+import os
 
-sys.path.insert(0,"../utils")
-sys.path.insert(0,"src")
+dirname = os.path.dirname(__file__)
+sys.path.insert(0,os.path.join(dirname, "../utils"))
+sys.path.insert(0,os.path.join(dirname, "src"))
 
 import model as m
 import utils as u
@@ -29,9 +31,9 @@ class rcnn(m.model):
     # This model uses the recurrent convolutional structure
 
     # Use Glove embeddings by default
-    def_vocab = "../data/embeddings/rcnn/vocab.pkl"
-    def_cooc = "../data/embeddings/rcnn/cooc.pkl"
-    def_embeddings = "../data/embeddings/rcnn/embeddings.npz"
+    def_vocab = os.path.join(dirname,"../data/embeddings/rcnn/vocab.pkl")
+    def_cooc = os.path.join(dirname,"../data/embeddings/rcnn/cooc.pkl")
+    def_embeddings = os.path.join(dirname,"../data/embeddings/rcnn/embeddings.npz")
 
     def __init__(self, vocab = def_vocab, cooc = def_cooc, embeddings = def_embeddings, subm = m.def_subm, probs = m.def_probs, trainneg = m.def_trainneg, trainpos = m.def_trainpos, test = m.def_test, word2vec = None, cp_dir = None):
         m.model.__init__(self, subm, probs, trainneg, trainpos, test)

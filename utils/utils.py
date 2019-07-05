@@ -5,6 +5,7 @@ from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
 
 import re
+import os
 import numpy as np
 import pandas as pd
 from itertools import groupby
@@ -24,14 +25,15 @@ wordnet_lemmatizer = WordNetLemmatizer()
 # Loading the dictaionary from metadata
 dict = {}
 
+dirname = os.path.dirname(__file__)
 # Credit to E.Aramaki -  http://luululu.com/tweet/
-corpus1 = open('../data/dictionaries/tweet_typo_corpus.txt', 'rb')
+corpus1 = open(os.path.join(dirname, '../data/dictionaries/tweet_typo_corpus.txt'), 'rb')
 for term in corpus1:
     term = term.decode('utf8').split()
     dict[term[0]] = term[1]
 
 # Credit to S. L. Chan, X. Meng, S. K. Koese - https://github.com/xiangzhemeng/Kaggle-Twitter-Sentiment-Analysis
-corpus2 = open('../data/dictionaries/text_correction.txt', 'rb')
+corpus2 = open(os.path.join(dirname, '../data/dictionaries/text_correction.txt'), 'rb')
 for term in corpus2:
     term = term.decode('utf8').split()
     dict[term[1]] = term[3]

@@ -4,12 +4,14 @@ import numpy as np
 import pickle
 
 from sklearn import metrics
+import os
 
-def_trainneg = "../data/input/train_neg.txt"
-def_trainpos = "../data/input/train_pos.txt"
-def_test = "../data/input/test_data.txt"
-def_subm = "../data/submissions/"
-def_probs = "../data/probabilities/"
+dirname = os.path.dirname(__file__)
+def_trainneg = os.path.join(dirname,"../data/input/train_neg.txt")
+def_trainpos = os.path.join(dirname,"../data/input/train_pos.txt")
+def_test = os.path.join(dirname,"../data/input/test_data.txt")
+def_subm = os.path.join(dirname,"../data/submissions/")
+def_probs = os.path.join(dirname,"../data/probabilities/")
 
 class model:
     # Model class for common twitter database interface
