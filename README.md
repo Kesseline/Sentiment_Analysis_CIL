@@ -1,11 +1,17 @@
 # Sentiment Analysis CIL
 
 # Preparations
-To be able to train and evaluate the fastText model, you are required to install (besides the standard libraries nltk and sklearn) the fastText python module:
+To be able to train and evaluate the fastText model, you are required to install the following python modules via pip.
 ```
-git clone https://github.com/facebookresearch/fastText.git
-cd fastText
-sudo pip install .
+numpy
+pickle
+sklearn
+tensorflow
+fastText
+nltk
+keras
+xgboost
+pandas
 ```
 
 # How to run

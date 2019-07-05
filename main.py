@@ -38,7 +38,7 @@ if __name__ == '__main__':
     models = [
         simple_lstm.simple_lstm(),
         simple_conv.simple_conv(),
-	fast_text.fast_text(),
+        fast_text.fast_text(),
         rcnn.rcnn(),
         # dcnn.dcnn(),
         # ngrams_sgd.ngrams_sgd(),
