@@ -21,6 +21,8 @@ from sklearn import metrics
 import tensorflow as tf
 import TextRCNN as trcnn
 
+import code
+
 ###############################
 #
 # Reference: This code is partially based on the model from https://github.com/roomylee/rcnn-text-classification
@@ -249,7 +251,7 @@ class rcnn(m.model):
         time_str = datetime.datetime.now().isoformat()
         print("{}: loss {:g}, acc {:g}\n".format(time_str, loss, accuracy))
 
-    def predict(self):
+    def generate_predict(self):
         # Train model and create a submission
 
         # If checkpoint available do not train anew
@@ -299,7 +301,7 @@ class rcnn(m.model):
         u.write_submission(preds.astype(int), self.subm + self.name + "_submission.csv")
         print("Submission successfully created")
 
-    def compute_probs(self):
+    def generate_probs(self):
         # Train model and compute confidence score on train-(negative tweets first) and test-data
 
         # If checkpoint available do not train anew
@@ -347,7 +349,7 @@ class rcnn(m.model):
                 all_probs = np.concatenate([all_probs,np.exp(batch_probs)/np.sum(np.exp(batch_probs),axis=1)[:,None]]) 
 
         with open(self.probs + self.name + "_train.pkl","wb") as f:
-            pickle.dump(all_probs,f)
+            pickle.dump(np.asarray(all_probs),f)
 
         print("Probs test set")
         test_x = self.load_test()
@@ -363,6 +365,6 @@ class rcnn(m.model):
                 all_probs = np.concatenate([all_probs,np.exp(batch_probs)/np.sum(np.exp(batch_probs),axis=1)[:,None]]) 
 
         with open(self.probs + self.name + "_test.pkl","wb") as f:
-            pickle.dump(all_probs,f)
+            pickle.dump(np.asarray(all_probs),f)
 
         print("All probabilities successfully computed")

@@ -53,14 +53,14 @@ class fast_text(m.model):
         # this is ugly, i know
         res = [self.clf.predict(t)[0][0][len(self.class_label):] for t in data]
         # predictions are now in array form
-        return [int(i) for i in res]
+        return np.asarray([int(i) for i in res])[:,None]
 
     def compute_props(self, data):
         #data = ["".join(t.split("\n")).decode('utf-8').strip() for t in data]
         data = ["".join(t.split("\n")).strip() for t in data]
         res = [self.clf.predict(t)[1] for t in data]
         # probabilities are now in array form
-        return [float(i) for i in res]
+        return np.asarray([float(i) for i in res])[:,None]
 
 
 '''
