@@ -34,7 +34,7 @@ Every model has its own file in the models folder and all models inherit from th
 ## Data
 This repo only contains the small dataset to get everything running.
 Link to full data: https://polybox.ethz.ch/index.php/s/6P4al3Rb5CZM5Pw
-Remember to add probability files correctly and pickle/rename probs from other repo
+This link not only contains the full data sets of tweets but also precomputed embeddings and probabilities for relevant models in order to make also stepwise reconstruction of the submission possible
 
 ## Experiments
 
