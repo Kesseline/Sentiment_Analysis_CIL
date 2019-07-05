@@ -13,6 +13,7 @@ import xgboost_ensemble
 import fast_text
 import rcnn
 import dcnn
+import transfer_sgd
 
 def print_bold(text):
     print ('\033[1m' + text + '\033[0m')
@@ -33,14 +34,16 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
+    # Active models are the ones responsible for our final submission
     models = [
-        ngrams_sgd.ngrams_sgd(),
         simple_lstm.simple_lstm(),
         simple_conv.simple_conv(),
-		fast_text.fast_text(),
+	fast_text.fast_text(),
         rcnn.rcnn(),
-        dcnn.dcnn(),
-        #glove_svm.glove_svm()
+        # dcnn.dcnn(),
+        # ngrams_sgd.ngrams_sgd(),
+        # glove_svm.glove_svm()
+        # transfer_sgd.transfer_sgd()
     ]
     
     # Assign paths (could also use constructor but this is simpler)

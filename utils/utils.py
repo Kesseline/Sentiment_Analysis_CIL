@@ -224,3 +224,18 @@ def batch_iter(data, batch_size, num_epochs, shuffle=True):
             start_index = batch_num * batch_size
             end_index = min((batch_num + 1) * batch_size, data_size)
             yield shuffled_data[start_index:end_index]
+
+def process_extData(path):
+    REPLACE_URL_RE = 'https?:\S+|http?:\S'
+    REPLACE_USER_RE = '@\S+'
+
+    with open(path,"rb") as f:
+        lines = [l.decode('ISO-8859-1') for l in f.readlines()]
+    lines_split = [l.split(',',5) for l in lines]
+    # Fix labels and remove newline and quote chars
+    datal = [[l[5][1:-2],-1] if l[0] == '"0"' else [l[5][1:-2],1] for l in lines_split]
+    # Replace URLs
+    datal = [[re.sub(REPLACE_URL_RE, '<url>',l[0]),l[1]] for l in datal]
+    # Replace Users
+    datal = [[re.sub(REPLACE_USER_RE, '<user>',l[0]),l[1]] for l in datal]
+    return datal
