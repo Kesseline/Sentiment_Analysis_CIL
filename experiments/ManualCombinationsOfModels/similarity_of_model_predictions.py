@@ -5,11 +5,6 @@ fasttext = "submission_files/fasttext_submission.csv"
 sgd = "submission_files/sgd_submission.csv"
 xgb = "submission_files/xgb_submission.csv"
 
-rcnn_prob = "submission_files/rcnn_submission_prob.csv"
-fasttext_prob = "submission_files/fasttext_submission_prob.csv"
-sgd_prob = "submission_files/sgd_submission_prob.csv"
-xgb_prob = "submission_files/xgb_submission_prob.csv"
-
 models_to_compare = {
 	rcnn
 	,dcnn

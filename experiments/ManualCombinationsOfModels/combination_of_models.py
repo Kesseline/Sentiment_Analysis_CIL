@@ -1,25 +1,26 @@
 import math
+import pickle
 
-rcnn_prob = "submission_files/rcnn_submission_prob.csv"
-fasttext_prob = "submission_files/fasttext_submission_prob.csv"
-sgd_prob = "submission_files/sgd_submission_prob.csv"
-xgb_prob = "submission_files/xgb_submission_prob.csv"
+rcnn_prob = "submission_files/rcnn_test.pkl"
+fasttext_prob = "submission_files/fast_text_test.pkl"
+simple_lstm = "submission_files/simple_lstm_test.pkl"
+simple_conv = "submission_files/simple_conv_test.pkl"
+dcnn_prob = "submission_files/dcnn_test.pkl"
 
 # models can be excluded by commenting them out
 models_to_compare = {
     rcnn_prob
 #    ,fasttext_prob
+#    ,simple_lstm
 #    ,sgd_prob
-    ,xgb_prob
+#    ,simple_conv
+    ,dcnn_prob
 }
 
 def read_submission_probs(filepath):
-    file = open(filepath, "r")
-    lines = file.readlines()[1:]
-    # This returns a list of the probabilities of the tweets being positive tweets
-    prob = [float(l.split(",")[1]) for l in lines]
-    file.close()
-    return prob
+	with open(filepath,"rb") as file:
+		data = pickle.load(file)
+	return [float(d[0]) for d in data]
 
 def combine_models():
     probabilities = []
