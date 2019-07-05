@@ -7,8 +7,8 @@ def generate_vocab(pathpos, pathneg, vocab_path):
     vocab = dict()
     
     base = os.path.dirname(os.path.abspath(__file__))
-    vocab_txt_path = base + "/output/vocab.txt"
-    vocab_cut_path = base + "/output/vocab_cut.txt"
+    vocab_txt_path = base + "/vocab.txt"
+    vocab_cut_path = base + "/vocab_cut.txt"
     
     bashCommand = "sh %s/build_vocab.sh %s %s %s" % (base, pathpos, pathneg, vocab_txt_path)
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)

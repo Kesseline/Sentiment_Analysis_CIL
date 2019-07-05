@@ -3,7 +3,7 @@ import os
 
 dirname = os.path.dirname(__file__)
 sys.path.insert(0,os.path.join(dirname, "../utils"))
-sys.path.insert(0,os.path.join(dirname, "glove"))
+sys.path.insert(0,os.path.join(dirname, "src"))
 
 import model as m
 import utils as u
@@ -22,9 +22,9 @@ from sklearn import svm
 class glove_svm(m.model):
     # This model uses ngrams (length 1 and 2) to represent tweets then a standard sgd-classifier is used
 
-    def_vocab = os.path.join(dirname,"../data/embeddings/glove_svm/vocab.pkl")
-    def_cooc = os.path.join(dirname,"../data/embeddings/glove_svm/cooc.pkl")
-    def_embeddings = os.path.join(dirname,"../data/embeddings/glove_svm/embeddings.npz")
+    def_vocab = os.path.join(dirname,"../data/embeddings/glove_vocab.pkl")
+    def_cooc = os.path.join(dirname,"../data/embeddings/cooc.pkl")
+    def_embeddings = os.path.join(dirname,"../data/embeddings/glove.npz")
     
     def __init__(self, vocab = def_vocab, cooc = def_cooc, embeddings = def_embeddings, subm = m.def_subm, probs = m.def_probs, trainneg = m.def_trainneg, trainpos = m.def_trainpos, test = m.def_test):
         m.model.__init__(self, subm, probs, trainneg, trainpos, test)
@@ -36,10 +36,14 @@ class glove_svm(m.model):
         self.dim = 300
         
     def build(self):
-        # Initialize vocabulary 
-        pv.generate_vocab(self.trainpos, self.trainneg, self.vocab)
-        coo.create_cooc(self.trainpos, self.trainneg, self.vocab, self.cooc)
-        ge.create_embeddings(self.cooc, self.embeddings)
+        vocab_found = os.path.isfile(os.path.join(os.path.curdir,self.vocab))
+        glove_found = os.path.isfile(os.path.join(os.path.curdir,self.embeddings))
+
+        # Initialize vocabulary if necessary
+        if not (vocab_found and glove_found):
+            pv.generate_vocab(self.trainpos, self.trainneg, self.vocab)
+            coo.create_cooc(self.trainpos, self.trainneg, self.vocab, self.cooc)
+            ge.create_embeddings(self.cooc, self.embeddings)
     
         
     def featurize(self, tweet, voc, emb):

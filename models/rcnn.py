@@ -31,9 +31,9 @@ class rcnn(m.model):
     # This model uses the recurrent convolutional structure
 
     # Use Glove embeddings by default
-    def_vocab = os.path.join(dirname,"../data/embeddings/rcnn/vocab.pkl")
-    def_cooc = os.path.join(dirname,"../data/embeddings/rcnn/cooc.pkl")
-    def_embeddings = os.path.join(dirname,"../data/embeddings/rcnn/embeddings.npz")
+    def_vocab = os.path.join(dirname,"../data/embeddings/glove_vocab.pkl")
+    def_cooc = os.path.join(dirname,"../data/embeddings/cooc.pkl")
+    def_embeddings = os.path.join(dirname,"../data/embeddings/glove.npz")
 
     def __init__(self, vocab = def_vocab, cooc = def_cooc, embeddings = def_embeddings, subm = m.def_subm, probs = m.def_probs, trainneg = m.def_trainneg, trainpos = m.def_trainpos, test = m.def_test, word2vec = None, cp_dir = None):
         m.model.__init__(self, subm, probs, trainneg, trainpos, test)
@@ -66,10 +66,14 @@ class rcnn(m.model):
         self.text_vocab_processor = tf.contrib.learn.preprocessing.VocabularyProcessor(self.max_sentence_length)
 
     def build(self):
-        # Initialize vocabulary 
-        pv.generate_vocab(self.trainpos, self.trainneg, self.glove_voc)
-        coo.create_cooc(self.trainpos, self.trainneg, self.glove_voc, self.cooc)
-        ge.create_embeddings(self.cooc, self.glove)
+        vocab_found = os.path.isfile(os.path.join(os.path.curdir,self.glove_voc))
+        glove_found = os.path.isfile(os.path.join(os.path.curdir,self.glove))
+
+        # Initialize vocabulary if necessary
+        if not (vocab_found and glove_found):
+            pv.generate_vocab(self.trainpos, self.trainneg, self.glove_voc)
+            coo.create_cooc(self.trainpos, self.trainneg, self.glove_voc, self.cooc)
+            ge.create_embeddings(self.cooc, self.glove)
         
     def load_train(self):
         # Load and prepare training tweets
