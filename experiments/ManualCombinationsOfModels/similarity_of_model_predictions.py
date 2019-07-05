@@ -1,7 +1,7 @@
 
 rcnn = "submission_files/rcnn_submission.csv"
 dcnn = "submission_files/dcnn_submission.csv"
-fasttext = "submission_files/fasttext_submission.csv"
+fasttext = "submission_files/fast_text_submission.csv"
 sgd = "submission_files/sgd_submission.csv"
 xgb = "submission_files/xgb_submission.csv"
 
